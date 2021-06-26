@@ -30,11 +30,13 @@ public class LoginController {
     @PostMapping("/dologin")
     public  ModelAndView doLogin(@ModelAttribute ("user") User user, @CookieValue (value="setUser", defaultValue = "") String setUser,
                                 HttpServletResponse response, HttpServletRequest request) {
+
         ModelAndView mav = new ModelAndView("/login");
         if (user.getEmail().equals("admin@gmail.com") && user.getPassWord().equals("12345")) {
 
-            if (user.getEmail() != null)
+            if (user.getEmail() != null){
                 setUser = user.getEmail();
+            }
 
             Cookie cookie = new Cookie("setUser", setUser);
             cookie.setMaxAge(24 * 60 * 60);
